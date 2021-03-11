@@ -3,7 +3,7 @@
 -
   type: linkedin
   icon: 'fab fa-linkedin'   # icons powered by <https://fontawesome.com/>
-  url:  'https://www.linkedin.com/in/sebastianrokholt/'                  # Fill with your Linkedin homepage
+  url:  ''                  # Fill with your Linkedin homepage
 -
   type: github
   icon: 'fab fa-github-alt'
