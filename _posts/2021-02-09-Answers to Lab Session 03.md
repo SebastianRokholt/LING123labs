@@ -1,15 +1,16 @@
 ---
 title: Solutions to Exercises from Lab Session 03
-date: 2021-03-15 18:05:00 +0100
+date: 2021-03-08 18:05:00 +0100
 categories: [Answers to Lab Exercises]
-tags: [shell, scripting, bash, zsh, awk, gawk, word-frequencies, substitution, ciphers, n-grams, RStudio, R]
+tags: [shell, scripting, bash, zsh, awk, sed, word-frequencies, substitution, ciphers, n-grams, RStudio, R, cut, tr, egrep, grep]
 pin: true
 math: true
 ---
 
-Try to solve the lab exercises by yourself before you view the solutions! <br>
+Here are my solutions to the exercises from lab session 03. <br>
+You should try to solve the lab exercises yourself before you peek at the answers! <br>
 You can find the exercises to Lab Session 03 [here](https://ling123labs.com/posts/Lab-Session-03/). <br>
-> ***[Lecture notes](https://lingkurs.h.uib.no/webroot/index.php?page=nlpintro&lang=en&course=ling123)***
+> ***[Link to relecvant lecture notes](https://lingkurs.h.uib.no/webroot/index.php?page=nlpintro&lang=en&course=ling123)***
 
 *Disagree with my answers, or have something to add? <br>
 Leave a [comment](#post-extend-wrapper)!* <br>
@@ -35,7 +36,7 @@ When comparing the frequency list to Antconc, we see that the output is mostly t
 The only difference, as far as I can see, is that Antconc sorts the occurences first by frequency, then alphabetically,
 while `bash` sorts the occurrences by frequency, then in *reverse* alphabetical order. <br>
 
-However, there might be other differences depending on the tokenization process in bash, such as that it might be
+However, there might be other differences depending on the tokenization process in `bash`, such as that it might be
 necessary for you to specify how apostrophes should be interpreted. Antconc also has a lot more functionality,
 and enables you to easily sort by different parameters. It also provides a ranking of each word in the frequency list.
 <br>
@@ -59,9 +60,10 @@ _Frequency by word length_
 
 We can select words that are three letters or less with the regular expression
 `\b[[:alpha:]]{1,3}\b`. If we sort the output with `sort -k1 -nr`, we can see the words with the highest frequency.
-When we execute the code for words of different lengths, we see that the relationship between word length and occurrence
-resembles an exponential function. Words of three words or less are much more prevalent (at least the popular ones)
-than words of four words, and words of four letters are much more prevalent than words with six letters, and so on. <br>
+When we execute the code for words of different lengths, we see that there is an exponential relationship
+between word length and number of occurrences in the text. Words of three words or less are much more prevalent
+(at least the popular ones) than words of four words, and words of four letters are much more prevalent
+than words with six letters, and so on. <br>
 <br>
 <br>
 
@@ -137,7 +139,8 @@ What's going on here...?
 ![Comparing the number of bigrams to trigrams](/assets/img/answers-03/comparing-num-bigrams-to-trigrams.png){: .normal}
 _Comparing the number of bigrams to trigrams_
 
-Ah, now we see the mistake. For bigrams, there is a single line which isn't actually a bigram.
+Ah, when using `tail` instead of `head` we see why it counted the same number of bigrams and trigrams.
+For bigrams, there is a single line which isn't actually a bigram.
 For trigrams, there are two lines which don't contain trigrams. This is because the `paste` command kept on pasting
 empty space when one of the files we gave as input had reached the end. <br>
 
@@ -149,7 +152,7 @@ $$Ngrams_K = X - (N - 1)$$
 
 
 <br>
-<br>
+
 
 ---
 <br>
@@ -194,9 +197,15 @@ tr $normal $decrypted
 
 ### Exercise 2.2: String substitutions
 *Reproduce the lecture [example code](https://lingkurs.h.uib.no/webroot/index.php?page=scripting/sed&lang=en&course=ling123)
-with `(EUR|NOK|USD)` instead of `kr\.?.` Now you have two groups. Use `\2` instead of `kroner` in the replacement.* <br>
+and extend the amount to include numbers with a decimal point, such as `289.90`, and change the replacement so
+that it converts the decimal point to a decimal comma.*
 
-
+```shell
+$ sed -E 's/kr\.? ([0-9]+)([\.,])?([0-9]+)?/\1,\3 kroner/g'
+kr. 140.50
+140,50 kroner
+```
+> Type `cmd + c` or `ctrl + c` to exit the `sed` program.
 
 <br>
 <br>
@@ -207,12 +216,44 @@ with `(EUR|NOK|USD)` instead of `kr\.?.` Now you have two groups. Use `\2` inste
 [example](https://lingkurs.h.uib.no/webroot/index.php?page=scripting/sed2&lang=en&course=ling123) in the lecture notes.
 Add them.* <br>
 
+First we need to edit the `tokenize.sh`-script to include accented characters in Spanish.
+Don't forget *ñ* and *ü*! (Though I think only a handful of Spanish words use the *ü*...)
+
+```shell
+#!/usr/bin/env bash
+# tokenize.sh
+tr '[:upper:]' '[:lower:]' < $1 | tr -cs '[a-záéóíúüñ]' '\n'
+```
+
+Next, we need to edit the `sed` expression to account for accented vowels.
+In this case, we don't want to include the *ñ*. I also added another *i* to the second group,
+because there is a word (*gui*) where the *u* is part of the onset, not the nucleus.
+
+```shell
+$ sed -E 's/[aeiouáéóíúü]+/,&,/' mono-es-tokens.txt | sed -E 's/,([iu])([aeoáéóíúüi])/\1,\2/' | head
+```
 
 <br>
 <br>
 
 *b) Replace empty onsets or codas with 0.* <br>
 
+Here, we simply add another substitution to the expression.
+You can replace the leading commas in the beginning of a line with `0,` with `sed -E 's/^,/0,/'`, like this:
+
+```shell
+$ sed -E 's/[aeiouáéóíúü]+/,&,/' mono-es-tokens.txt | sed -E 's/,([iu])([aeoáéóíúü])/\1,\2/' | sed -E 's/^,/0,/' | head
+0,a,
+0,a,l
+0,a,r
+0,a,s
+0,a,x
+b,a,h
+b,a,r
+b,e,
+b,e,l
+bi,e,n
+```
 
 <br>
 <br>
@@ -221,8 +262,67 @@ Add them.* <br>
 [cutting columns](https://lingkurs.h.uib.no/webroot/index.php?page=scripting/columns&lang=en&course=ling123),
 cut the vowel column from this comma-separated output and produce a graph of the frequencies of the vowels.* <br>
 
+I'm just going to continue to add more code to the existing expression, even though you might want to save the output
+from the previous exercise to a file before you progress further. Anyway, this time we add the expression
+`cut -d',' -f2 ` to the pipeline. The `-d','` flag sets the delimiter to comma, while the `-f2` flag tells `cut`
+to extract only the second field.
 
+> PS: We could've used `awk` instead of `cut` here. Remember how?
 
+```shell
+$ sed -E 's/[aeiouáéóíú]+/,&,/' mono-es-tokens.txt | sed -E 's/,([iu])([aeoáéóíú])/\1,\2/' |
+ sed -E 's/^,/0,/' | cut -d',' -f2
+```
+
+We want to count the frequency of each vowel,
+so we add the familiar expression `sort | uniq -c | sort -nr` to the pipeline as well:
+
+```shell
+$ sed -E 's/[aeiouáéóíú]+/,&,/' mono-es-tokens.txt | sed -E 's/,([iu])([aeoáéóíú])/\1,\2/' |
+ sed -E 's/^,/0,/' | cut -d',' -f2 | sort | uniq -c | sort -nr
+    63 a
+    57 e
+    50 o
+    36 i
+    27 u
+     7 é
+     3 í
+     2 á
+     1 y
+     1 ú
+```
+
+Our goal is to produce a graph of the frequencies of the vowels.
+In order to do that, we first need to save the output to a comma-separated values (.csv) file.
+A .csv file is just like a text file where the columns are separated with a comma,
+so we can use `awk '{print $1","$2}'` or `sed -E 's/ *([0-9]+) /\1,/'g` to replace the spaces in the output with commas.
+We'll then save the final output to a file, here named `es-vowels-freq.csv`:
+
+```shell
+$ sed -E 's/[aeiouáéóíú]+/,&,/' mono-es-tokens.txt | sed -E 's/,([iu])([aeoáéóíúi])/\1,\2/' | sed -E 's/^,/0,/' |
+ cut -d',' -f2 | sort | uniq -c | sort -nr | awk '{print $1","$2}' > es-vowels-freq.csv
+```
+
+Almost there!
+Finally, we can plot the frequencies in *RStudio*:
+```R
+freqlist <- read.csv("es-vowels-freq.csv",
+                     fileEncoding = "UTF-8", header=FALSE)
+names(freqlist) <- c("Frequency", "Character index")
+attach(freqlist)
+
+barplot(freqlist$Frequency, las=2, col='darkgreen', xlab='Character',
+        ylab='Frequency')
+```
+
+And the output should look something like this:
+
+![RStudio es-vowel-freq barplot](/assets/img/answers-03/vowel-freq-output.png){: height="440"}
+_The frequency of vowels in the file mono-es.txt_
+
+Feel free to experiment further with different parameters, plot styles, labelling etc!
+For example, you can try to add a label to each bar with the character that the bar represents.
+I.e, the first character is *a*, the second is *e*, and so forth.
 <br>
 <br>
 
@@ -230,39 +330,268 @@ cut the vowel column from this comma-separated output and produce a graph of the
 
 
 ## Part 3: Additional exercises
-These exercises are slightly more challenging. See if you are able to solve them all!
-Let the seminar leader know if you are stuck, and you might get a hint... <br>
 
+### Exercise 3.1: Word frequencies
+*a) Tokenize [The Bible](https://mitt.uib.no/courses/27100/files?preview=3088069) and save it to a new file
+`bible-tokens.txt`.* <br>
 
-### Exercise 3.1: Word frequencies (extra)
-a) Tokenize [The Bible](https://mitt.uib.no/courses/27100/files?preview=3088069) and save it to a new file
-`bible-tokens.txt`. <br>
-b) Retrieve all words from `bible-tokens.txt` which contain the letter *A* (case insensitive)
-non-initially and non-finally. Get the frequencies for these words and sort them by highest occurence, like this:
+If downloading the file from MittUiB doesn't work, you can copy the plaintext of The Bible directly
+from The Gutenberg Project [here](https://www.gutenberg.org/cache/epub/8300/pg8300.txt).
 
+To tokenize the file, we can use the `tokenize.sh` script from the
+[lecture notes](https://lingkurs.h.uib.no/webroot/index.php?page=scripting/scriptfiles2&lang=en&course=ling123).
+
+```shell
+$ source tokenize.sh the-bible.txt > bible-tokens.txt
+$ head bible-tokens.txt
+the
+project
+gutenberg
+ebook
+of
+the
+bible
+douay
+rheims
+old
 ```
-16117 word number one
-11695 word number two
-5877 word number three
-...
+
+<br>
+
+*b) Retrieve all words from `bible-tokens.txt` which contain the letter "A" (case insensitive)
+non-initially and non-finally. Get the frequencies for these words and sort them by highest occurrence.*
+
+The simplest way to do this is probably by using `egrep`:
+```shell
+$ egrep -iw '[^a][[:alnum:]]+[^a]' bible-tokens.txt | head
+the
+project
+gutenberg
+ebook
+the
+bible
+douay
+rheims
+old
+new
 ```
-c) Use `egrep` to only retrieve words from `bible-tokens.txt` that are five letters long or more,
-then count and sort them like above. <br>
-d) Out of all words in the text, how many percent of them are five letters or longer and used more than once? <br>
-> Tip: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
->  $$\dfrac{\text{amount of long words which occur more than once}}{\text{total number of words in the text}}$$
 
-d) Write a shell script that can take a regular expression (argument `$1`) and a file name (argument `$2`) from the user,
-and output a frequency list like in the exercises above. <br>
+We have a shell script `freqlist.sh` from earlier which we can use to get the frequencies. It looks like this:
+```shell
+#!/usr/bin/env bash
+# freqlist.sh
+egrep -ow '\w+' $FILE | gawk '{print tolower($0)}' | sort | uniq -c | sort -nr
+```
 
+So a final solution could look like this:
+```shell
+$ egrep -iw '[^a][[:alnum:]]+[^a]' bible-tokens.txt | source freqlist.sh
+  79636 the
+  16117 that
+  11695 shall
+  10664 his
+  10120 for
+   9049 they
+   8542 not
+   8472 lord
+   8171 him
+   7647 them
+   ...
+```
+
+<br>
+
+*c) Use `egrep` to only retrieve words from `bible-tokens.txt` that are five letters long or more,
+then count and sort them like above.* <br>
+
+```shell
+$ egrep -iw '\w{5,}' bible-tokens.txt | source freqlist.sh | head
+  11695 shall
+   5252 their
+   4482 which
+   2760 israel
+   2735 there
+   2499 people
+   2176 things
+   2048 before
+   1929 children
+   1926 against
+```
+
+<br>
+
+*d) Out of all words in the text, how many percent of them are five letters or longer and used more than once?* <br>
+
+```shell
+$ egrep -iw '\w{5,}' bible-tokens.txt |source freq-list-improved.sh | awk '{sum+=$1} END {print sum}'
+313841
+$ wc -w bible-tokens.txt
+994536
+```
+
+We can calculate the answer with the following formula:
+
+$$\dfrac{\text{amount of long words which occur more than once}}{\text{total number of words in the text}}$$
+
+So the answer is `313841 / 994534 = 0.315`**`= 31.5%`**
+
+<br>
+
+*e) Write a shell script that can take a regular expression (argument `$1`) and a file name (argument `$2`) from the user,
+and output a frequency list like in the exercises above.* <br>
+
+```shell
+#!/usr/bin/env bash
+# freqlist-with-regex.sh
+
+# Tokenize the input file
+egrep -iwo '[[:alpha:]]+' < $2 | awk '{print tolower($0)}' |
+ # Extract matches with egrep and the regex input from the user
+ egrep $1 |
+ # Output a frequency list
+ sort | uniq -c | sort -nr
+```
+
+```shell
+$ source freqlist-with-regex.sh '^lead.*' ../the-bible.txt
+     72 lead
+     30 leadeth
+     29 leader
+      8 leaders
+      7 leading
+      3 leadest
+      2 leads
+```
+
+<br>
+<br>
 
 
 ### Exercise 3.2: N-grams
-a) Find all trigrams in `chess.txt` containing the word *det*. Afterwards, find only trigrams containing *det* as the
-first word, middle word, then last word. <br>
-b) Why can it be useful to differentiate where the word occurs in the N-grams? <br>
+*a) Find all trigrams in `chess.txt` containing the word "*det*".
+Afterwards, find only trigrams containing "*det*" as the
+first word, middle word, then last word.* <br>
 
+```shell
+$ tail -n+2 chess-tokens.txt > chess-next.txt
+$ tail -n+3 chess-tokens.txt > chess-next-next.txt
+$ paste chess-tokens.txt chess-next.txt chess-next-next.txt > chess-trigrams.txt
+$ egrep -w 'det' chess-trigrams.txt | head
+er      det     allerede
+det     allerede        remis
+nrks    studio  det
+studio  det     var
+det     var     spilt
+brettet ja      det
+ja      det     var
+det     var     raskt
+til     nrk     det
+nrk     det     gikk
+```
+
+Finding trigrams containing *det* as the first word:
+```shell
+$ awk '{if ($1=="det") print $0}' chess-trigrams.txt
+det     allerede        remis
+det     var     spilt
+det     var     raskt
+det     gikk    inn
+det     er      ganske
+det     spilles mange
+```
+
+As the second word:
+```shell
+$ awk '{if ($2=="det") print $0}' chess-trigrams.txt
+er      det     allerede
+studio  det     var
+ja      det     var
+nrk     det     gikk
+får       det     er
+slitsomt        det     spilles
+```
+
+And the third:
+```shell
+$ awk '{if ($3=="det") print $0}' chess-trigrams.txt
+nrks    studio  det
+brettet ja      det
+til     nrk     det
+jeg     r       det
+ganske  slitsomt        det
+```
+
+
+<br>
+
+*b) Why can it be useful to differentiate where the word occurs in the N-grams?* <br>
+N-grams are used for a lot of different things in natural language processing. For example, we might
+use N-grams for calculating word probabilities in auto-complete or automatic spell checking.
+By differentiating where the word occurs in the N-gram, we can calculate different probabilities for related words.
+So if a user types `on my`, we can look at which words occur most frequently as the third word in a
+trigram with those two words. Thus we might be able to predict that the user wants to write `on my way`.
+<br>
+This is just one example. Can you think of any others?
+<br>
+<br>
 
 
 ### Exercise 3.3: String substitutions
-Using `sed`, create a shell script which reformats dates written as *DD.MM.YYYY* to *YYYY-MM-DD*. <br>
+*Using `sed`, create a shell script which reformats dates written as `DD.MM.YYYY` to `YYYY-MM-DD`.* <br>
+
+```shell
+#!/usr/bin/env bash
+# year-formatting.sh
+
+sed -E 's/([[:digit:]]{2}).([[:digit:]]{2}).([[:digit:]]{4})/\3-\2-\1/g'
+```
+
+Let's test our script by giving it the file `birthdays.txt` as input:
+```shell
+$ # Let's view the original file contents first
+$ cat birthdays.txt
+BIRTHDAYS
+----------------------
+Roger  22.08.1992
+Michael  25.02.1997
+Bob  15.01.2000
+Lindsey  18.12.1994
+Jessica  21.10.2001
+Jeff  30.03.1976
+Trevor  08.15.1989
+Louanne  06.07.1965
+Tim  01.02.1972
+---------------------
+
+$ # Then we perform the substitution with our script
+$ source year-formatting.sh < birthdays.txt
+BIRTHDAYS
+----------------------
+Roger  1992-08-22
+Michael  1997-02-25
+Bob  2000-01-15
+Lindsey  1994-12-18
+Jessica  2001-10-21
+Jeff  1976-03-30
+Trevor  1989-15-08
+Louanne  1965-07-06
+Tim  1972-02-01
+---------------------
+
+$ # We can also choose to save the output in a new file
+$ source year-formatting.sh < birthdays.txt > birthdays-reformatted.txt
+$ cat birthdays-reformatted.txt
+BIRTHDAYS
+----------------------
+Roger  1992-08-22
+Michael  1997-02-25
+Bob  2000-01-15
+Lindsey  1994-12-18
+Jessica  2001-10-21
+Jeff  1976-03-30
+Trevor  1989-15-08
+Louanne  1965-07-06
+Tim  1972-02-01
+---------------------
+
+```
