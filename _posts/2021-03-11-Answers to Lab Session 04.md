@@ -1,10 +1,9 @@
 ---
 title: Solutions to Exercises from Lab Session 04
-date: 2021-03-11 12:01:00 +0100
+date: 2021-03-11 14:16:00 +0100
 categories: [Answers to Lab Exercises]
-tags: [shell, scripting, bash, zsh, awk, gawk, ]
+tags: [shell, scripting, bash, zsh, awk, sed, frequency, dictionary, alphabet, alphabets, ordering]
 pin: true
-math: true
 ---
 
 Here are my solutions to the exercises from lab session 04. <br>
