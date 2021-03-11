@@ -10,9 +10,9 @@ math: true
 Here are my solutions to the exercises from lab session 03. <br>
 You should try to solve the lab exercises yourself before you peek at the answers! <br>
 You can find the exercises to Lab Session 03 [here](https://ling123labs.com/posts/Lab-Session-03/). <br>
-> ***[Link to relecvant lecture notes](https://lingkurs.h.uib.no/webroot/index.php?page=nlpintro&lang=en&course=ling123)***
+> ***[Link to relevant lecture notes](https://lingkurs.h.uib.no/webroot/index.php?page=nlpintro&lang=en&course=ling123)***
 
-*Disagree with my answers, or have something to add? <br>
+*Disagree with my solutions, or have something to add? <br>
 Leave a [comment](#post-extend-wrapper)!* <br>
 
 ---
