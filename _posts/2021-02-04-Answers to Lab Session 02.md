@@ -3,7 +3,7 @@ title: Solutions to the exercises from Lab Session 02
 date: 2021-02-24 17:30:00 +0100
 categories: [Answers to Lab Exercises]
 tags: [regex, regular_expressions, shell, wsl, bash, wc, nano, zsh, scripting, grep, egrep, tr, read, echo, awk, gawk]
-pin: true
+pin: false
 ---
 
 Try to solve the lab exercises yourself before you view the solutions! <br>
