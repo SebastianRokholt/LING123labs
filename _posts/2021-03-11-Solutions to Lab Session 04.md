@@ -1,7 +1,7 @@
 ---
 title: Solutions to Exercises from Lab Session 04
 date: 2021-03-11 14:16:00 +0100
-categories: [Answers to Lab Exercises]
+categories: [Solutions to Lab Exercises]
 tags: [shell, scripting, bash, zsh, awk, sed, frequency, dictionary, alphabet, alphabets, ordering]
 pin: false
 ---

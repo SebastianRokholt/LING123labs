@@ -1,7 +1,7 @@
 ---
 title: Solutions to the exercises from Lab Session 02
 date: 2021-02-24 17:30:00 +0100
-categories: [Answers to Lab Exercises]
+categories: [Solutions to Lab Exercises]
 tags: [regex, regular_expressions, shell, wsl, bash, wc, nano, zsh, scripting, grep, egrep, tr, read, echo, awk, gawk]
 pin: false
 ---
@@ -10,7 +10,7 @@ Try to solve the lab exercises yourself before you view the solutions! <br>
 You can find the exercises to Lab Session 02 [here](https://ling123labs.com/posts/Lab-Session-02/). <br>
 > ***[Lecture notes](https://lingkurs.h.uib.no/webroot/index.php?page=scripting/searchregexp&lang=en&course=ling123)***
 
-*Disagree with my answers, or have something to add? <br>
+*Disagree with my solutions to the exercises, or have something to add? <br>
 Leave a [comment](#post-extend-wrapper)!*
 
 ---

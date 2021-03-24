@@ -1,7 +1,7 @@
 ---
 title: Solutions to the exercises from Lab Session 01
 date: 2021-02-08 22:00:00 +0100
-categories: [Answers to Lab Exercises]
+categories: [Solutions to Lab Exercises]
 tags: [corpora, corpus, language-data, norgramtall, corpuscle, antconc, shell, setup, wsl, ubuntu, bash, wc, vim, nano, emacs, zsh]
 pin: false
 ---

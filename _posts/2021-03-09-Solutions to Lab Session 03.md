@@ -1,7 +1,7 @@
 ---
 title: Solutions to Exercises from Lab Session 03
 date: 2021-03-11 11:01:00 +0100
-categories: [Answers to Lab Exercises]
+categories: [Solutions to Lab Exercises]
 tags: [shell, scripting, bash, zsh, awk, sed, word-frequencies, substitution, ciphers, n-grams, RStudio, R, cut, tr, egrep, grep]
 pin: false
 math: true
