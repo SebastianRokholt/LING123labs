@@ -3,7 +3,7 @@ title: Solutions to Exercises from Lab Session 05
 date: 2021-03-24 20:16:00 +0100
 categories: [Solutions to Lab Exercises]
 tags: [shell, bash, zsh, awk, sed, frequency, alphabet, alphabets, ordering, regex, regular_expressions, palindrome, roman, numerals]
-pin: true
+pin: false
 ---
 
 Remember to at least attempt the lab exercises by yourself before you take a peek at my proposed solutions below. <br>
