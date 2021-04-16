@@ -1,6 +1,6 @@
 ---
 title: Solutions to Exercises from Lab Session 06
-date: 2021-03-24 20:16:00 +0100
+date: 2021-04-10 20:16:00 +0100
 categories: [Solutions to Lab Exercises]
 tags: [AWK, awk, gawk, bash, html, zsh, scripting, shell, Ubuntu, paste, comm, wc, sort, similarity, vocabulary]
 pin: false
@@ -15,7 +15,6 @@ Leave a [comment](#post-extend-wrapper)!* <br>
 
 
 ---
-
 
 ### Exercise 1: Extracting text from HTML <br>
 *Consider refining the script from the lecture notes further by
