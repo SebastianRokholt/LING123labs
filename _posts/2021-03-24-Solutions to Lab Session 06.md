@@ -130,8 +130,7 @@ word, 1 <br>
 5) Calculate the similarity between the vectors, using some similarity metric <br>
 metric 1: euclidean distance <br>
 metric 2: hamming distance <br>
-metric 3: cosine similarity <br>
-+ a bunch of others <br>
+metric 3: cosine similarity, + a bunch of others <br>
 
 <br>
 <br>
