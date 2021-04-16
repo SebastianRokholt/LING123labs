@@ -94,45 +94,45 @@ or dissimilar the texts are. <br>
 *c) Note that comparisons with `comm` ignores the frequency of each word.
 How could we take frequencies into account when comparing two different vocabularies?*
 
-Say we have two different texts, like this:
-  text 1: "A day may come when the courage of men fails… but it is not this day.”
-  text 2: "Every man of courage is a man of his word."
+Say we have two different texts, like this: <br>
+  `text 1: "A day may come when the courage of men fails… but it is not this day.”` <br>
+  `text 2: "Every man of courage is a man of his word."` <br>
 
 One could compare the two texts by taking frequencies into account by creating a vector of each text,
 and then compare the vectors mathematically. This can be accomplished in 5 steps:
 
-  1. Tokenize and lemmatize both texts. Remove stopwords.
-  2. Pick only the unique words from both texts.
-  3. Count the number of occurences of unique words in each of the texts.
-> Analysis of text 1:
-> day, 2
-> come, 1
->courage, 1
->man, 1
->every, 0
->word, 0
+1) Tokenize and lemmatize both texts. Remove stopwords. <br>
+2) Pick only the unique words from both texts. <br>
+3) Count the number of occurrences of unique words in each of the texts. <br>
 
->Analysis of text 2:
->day, 0
->come, 0
->courage, 1
->man, 2
->every, 1
->word, 1
+**Analysis of text 1:** <br>
+day, 2 <br>
+come, 1 <br>
+courage, 1 <br>
+man, 1 <br>
+every, 0 <br>
+word, 0 <br>
 
-  4. Create a vector for the frequency of the unique words for each text
-> vector for text 1:
-> [2, 1, 1, 1, 0, 0]
+**Analysis of text 2:** <br>
+day, 0 <br>
+come, 0 <br>
+courage, 1 <br>
+man, 2 <br>
+every, 1 <br>
+word, 1 <br>
 
-> vector for text 2:
-> [0, 0, 1, 2, 1, 1]
+4) Create a vector for the frequency of the unique words for each text <br>
+**vector for text 1:** <br>
+[2, 1, 1, 1, 0, 0] <br>
 
-  5. Calculate the similarity between the vectors, using some similarity metric
+**vector for text 2:** <br>
+[0, 0, 1, 2, 1, 1] <br>
 
-> metric 1: euclidean distance
-> metric 2: hamming distance
-> metric 3: cosine similarity
-> + a bunch of others
+5) Calculate the similarity between the vectors, using some similarity metric <br>
+metric 1: euclidean distance <br>
+metric 2: hamming distance <br>
+metric 3: cosine similarity <br>
++ a bunch of others <br>
 
 <br>
 <br>
