@@ -7,7 +7,7 @@ pin: false
 ---
 
 Remember to at least attempt the lab exercises by yourself before you take a peek at my proposed solutions below. <br>
-The exercises to Lab Session 05 are available [here](https://ling123labs.com/posts/Lab-Session-06/). <br>
+The exercises to Lab Session 06 are available [here](https://ling123labs.com/posts/Lab-Session-06/). <br>
 > ***[Link to relevant lecture notes](https://lingkurs.h.uib.no/webroot/index.php?page=scripting/htmlcorpus&lang=en&course=ling123)***
 
 *Disagree with my solutions, or have something to add? <br>
