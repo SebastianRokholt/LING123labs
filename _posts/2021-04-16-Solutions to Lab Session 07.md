@@ -6,7 +6,7 @@ tags: [python, lists, dictionaries, tuples, slice, range, palindromes, nltk, fun
 pin: true
 ---
 
-Remember to at least attempt the lab exercises by yourself before you take a peek at my proposed solutions below. <br>
+Remember to at least attempt the lab exercises by yourself before you take a peek at my proposed solutions below.
 The exercises to Lab Session 07 are available [here](https://ling123labs.com/posts/Lab-Session-07/). <br>
 > ***[Link to relevant lecture notes](https://lingkurs.h.uib.no/webroot/index.php?page=python&lang=en&course=ling123)***
 
@@ -480,7 +480,7 @@ then the output of the program should be*:
 1500
 ```
 
-You can extract digits from text using the split() function from the re module, like this: <br>
+You can extract digits from text using the `split()` function from the `re` module, like this: <br>
 
 ```python
 # get_digits.py
@@ -540,18 +540,17 @@ $ python extract_quotes.py
 *Write a Python function that takes a string as input,
 and returns all unique capitalized words in the string which are not
 [stopwords](https://en.wikipedia.org/wiki/Stop_word).
-You may use `stopwords` from the `nltk` package to achieve this.* <br>
-
-*So if the input is `When I lived in England I had a cat named Tom, and a cow named Darcy.`
+You may use `stopwords` from the `nltk` package to achieve this. <br>
+So if the input is "When I lived in England I had a cat named Tom, and a cow named Darcy"
 we want the output to be a list or tuple containing `England, Tom, Darcy`.*
 
-Named Entity Recognition is its own subfield of Natural Language Processing, because extracting names from a text is
+Named Entity Recognition is its own subfield of Natural Language Processing (a.k.a Computational Linguistics),
+because extracting names from a text is
 a notoriously difficult task. I don't expect you to make use of any advanced techniques or tools here, so your solutions
 are fine as long as you extract the words that start with an upper case letter. <br>
 
-I solved this one by extracting all uppercase words with `re.findall(r"\b[A-Z][a-z]*", string)`, then removing all
-of the most commonly used words by importing the English `stopwords` library from NLTK and removing the stopwords from
-the result. <br>
+For example, you can solve this one by extracting all uppercase words with `re.findall(r"\b[A-Z][a-z]*", string)`,
+importing the English `stopwords` library from NLTK and then removing all stopwords from the final result: <br>
 
 ```python
 # extract_names.py
