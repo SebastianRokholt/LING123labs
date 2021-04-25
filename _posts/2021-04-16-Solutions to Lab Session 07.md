@@ -3,7 +3,7 @@ title: Solutions to Exercises from Lab Session 07
 date: 2021-04-24 19:16:00 +0200
 categories: [Solutions to Lab Exercises]
 tags: [python, lists, dictionaries, tuples, slice, range, palindromes, nltk, functions, methods, regex, regexp, tokenization, dictionary, list, tuple]
-pin: true
+pin: false
 ---
 
 Disclaimer: You should always attempt to solve the lab exercises by yourself before looking at the proposed solutions
