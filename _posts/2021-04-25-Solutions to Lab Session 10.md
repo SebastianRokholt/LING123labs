@@ -2,7 +2,7 @@
 title: Solutions to Exercises from Lab Session 10
 date: 2021-04-25 16:40:00 +0200
 categories: [Solutions to Lab Exercises]
-tags: [python, Levenshtein, nltk]
+tags: [python, Levenshtein, nltk, xsltproc, xsl, xml, xslt, transformation]
 pin: true
 ---
 <br>
