@@ -12,8 +12,8 @@ pin: true
 
 Disclaimer: You should always attempt to solve the lab exercises by yourself before looking at the proposed solutions
 below.
-The exercises to Lab Session 07 are available [here](https://ling123labs.com/posts/Lab-Session-08/). <br>
-> ***[Link to relevant lecture notes](https://lingkurs.h.uib.no/webroot/index.php?page=python/zip&lang=en&course=ling123)***
+The exercises to Lab Session 08 are available [here](https://ling123labs.com/posts/Lab-Session-08/). <br>
+> ***[Link to relevant lecture notes](https://lingkurs.h.uib.no/webroot/index.php?page=python/tokenize&lang=en&course=ling123)***
 
 *Disagree with my solutions, or have something to add? <br>
 Leave a [comment](#post-extend-wrapper)!* <br>
@@ -121,11 +121,9 @@ $ python zippers.py
 z:
 
 Traceback (most recent call last):
-  File "C:\Users\sebas\OneDrive\Documents\05 - LING123\Lab Sessions\Lab 08\ex_02-zippers.py", line 14, in <module>
+  File "C:\Users\Path-to-file\zippers.py", line 14, in <module>
     print(next(z))
 StopIteration
-
-Process finished with exit code 1
 ```
 
 So the answer is that we get a `StopIteration` error. But why is that? <br>
