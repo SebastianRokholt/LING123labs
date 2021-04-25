@@ -3,7 +3,7 @@ title: Solutions to Exercises from Lab Session 09
 date: 2021-04-25 16:28:00 +0200
 categories: [Solutions to Lab Exercises]
 tags: [python, dictionary, dictionaries, regex, zip, zipper, n-grams, n-gram, frequency, counter, frequencies, Levenshtein, casefold, nltk]
-pin: true
+pin: false
 ---
 <br>
 
