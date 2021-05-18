@@ -1,6 +1,6 @@
 ---
 title: Solutions to Exercises from Lab Session 12
-date: 2021-04-29 20:40:00 +0200
+date: 2021-05-18 08:22:00 +0200
 categories: [Solutions to Lab Exercises]
 tags: [xslt, xsltproc, xml, xsl, html, regex, regular, expression, cheat, sheet, JFLAP]
 pin: true
@@ -117,7 +117,7 @@ XSLT solution:
 </xsl:stylesheet>
 ```
 
-HTML output after running `xsltproc stylesheet.xsl books.xml > book_wishlist.html`:
+HTML output after running `xsltproc stylesheet.xsl books.xml > book_wishlist.html` in the shell:
 
 ```html
 <html>
@@ -221,7 +221,6 @@ Transition table: <br>
 
 *d) Modify the last regexp so that only an even number of 0's before the decimal point are allowed,
 e.g. `kr. 100.00`, `kr. 20000.00`, etc., but not `kr. 20.00`. Make an automaton for this language and test.* <br>
-<br>
 
 This can be achieved by grouping two 0's together, followed by a \* to indicate 0 or more occurrences of the two 0's.
 ```regexp
