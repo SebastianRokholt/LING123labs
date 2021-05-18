@@ -3,7 +3,7 @@ title: Solutions to Exercises from Lab Session 11
 date: 2021-04-29 15:40:00 +0200
 categories: [Solutions to Lab Exercises]
 tags: [xslt, xsltproc, xml, xsl, html, ocr, css, regex, regular, expression, email, address, re, python, shell, script]
-pin: true
+pin: false
 ---
 <br>
 
