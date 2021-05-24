@@ -2,8 +2,8 @@
 title: Solutions to Exercises from Lab Session 12
 date: 2021-05-18 08:22:00 +0200
 categories: [Solutions to Lab Exercises]
-tags: [xslt, xsltproc, xml, xsl, html, regex, regular, expression, cheat, sheet, JFLAP]
-pin: true
+tags: [xslt, xsltproc, xml, xsl, html, regex, regular, expression, JFLAP, transition, table, finite, state, automata, FSA]
+pin: false
 ---
 <br>
 
