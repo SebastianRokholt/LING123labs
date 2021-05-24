@@ -1,8 +1,8 @@
 ---
 title: Solutions to Exercises from Lab Session 13
-date: 2021-05-23 10:22:00 +0200
+date: 2021-05-24 17:21:00 +0200
 categories: [Solutions to Lab Exercises]
-tags: [exam, revision, python, awk, shell, scripting, levenshtein, frequency, n-grams, trigrams, html, compound, JFLAP, transition, table]
+tags: [exam, revision, python, awk, shell, scripting, regex, levenshtein, frequency, n-grams, trigrams, html, compound, JFLAP, transition, table]
 pin: true
 ---
 
